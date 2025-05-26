@@ -20,25 +20,25 @@ def build_linked_list(values):
         curr = curr.next
     return head
 
-class Solution:
-    def reverseList(self, head: ListNode) -> ListNode:
-        prev = None
-        current = head
-        next_node = None
+# ✅ Core Logic (slow-fast pointer দিয়ে middle delete)
+def delete_middle(head):
+    if not head.next:
+        return None
 
-        while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-        return prev
+    slow = head
+    fast = head
+    prev = None
 
+    while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
 
+    prev.next = slow.next
+    return head
 
 # 🧪 এখন test করো
 vals = [1, 3, 4, 7, 1, 2, 6]
 head = build_linked_list(vals)
-# rv = Solution()
-# new_head = rv.reverseList(head)
-new_head = Solution().reverseList(head)
+new_head = delete_middle(head)
 print_list(new_head)
