@@ -38,6 +38,9 @@ def maxDepth(root):
     left = maxDepth(root.left)
     right = maxDepth(root.right)
 
+    print("left: ",left)
+    # print("right: ",right)
+
     return 1 + max(left, right)
 
 

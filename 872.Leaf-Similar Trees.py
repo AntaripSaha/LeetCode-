@@ -55,6 +55,13 @@ def leafSimilar(root1, root2):
 
     return get_leaves(root1) == get_leaves(root2)
 
+def maxDef(root):
+    if not root:
+        return None
+    left = maxDef(root.left)
+    right = maxDef(root.right)
+
+    return 1+ max(left, right)
 
 # Test input: LeetCode format
 root1 = [1,2,3]
