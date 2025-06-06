@@ -37,11 +37,27 @@ def maxDepth(root):
 
     left = maxDepth(root.left)
     right = maxDepth(root.right)
-
-    print("left: ",left)
-    # print("right: ",right)
+    # print("left: ",left)
+    # # print("right: ",right)
 
     return 1 + max(left, right)
+
+# count the total nodes of a tree
+
+def countNodes(root):
+    if root == None:
+        return 0
+    leftCount = countNodes(root.left)
+    rightCount = countNodes(root.right)
+    return leftCount + rightCount + 1
+
+def sumNodes(root):
+    if not root:
+        return 0
+    leftSum = sumNodes(root.left)
+    rightSum = sumNodes(root.right)
+    return leftSum + rightSum + root.val
+
 
 
 
@@ -52,5 +68,13 @@ values = [3, 9, 20, None, None, 15, 7]
 tree_root = build_tree_level_order(values)
 
 # Call depth function
-depth = maxDepth(tree_root)
-print("Maximum Depth =", depth)  # Expected Output: 3
+# depth = maxDepth(tree_root)
+# print("Maximum Depth =", depth)  # Expected Output: 3
+
+# Call Count function
+countAll = countNodes(tree_root)
+print("Total Nodes =", countAll)  # Expected Output: 3
+
+# Call sum function
+sumAll = sumNodes(tree_root)
+print("Sum of Nodes =", sumAll)  # Expected Output: 3
