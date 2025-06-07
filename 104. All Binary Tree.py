@@ -58,23 +58,41 @@ def sumNodes(root):
     rightSum = sumNodes(root.right)
     return leftSum + rightSum + root.val
 
+# check the leaf Nodes
 
+def leafSimilar(root1, root2):
+    def get_leaves(node):
+        if not node:
+            return []
+        if not node.left and not node.right:
+            return [node.val]
+        return get_leaves(node.left) + get_leaves(node.right)
+    return get_leaves(root1) == get_leaves(root2)
 
-
-# Test input: LeetCode format
-values = [3, 9, 20, None, None, 15, 7]
-
-# Build tree from input
-tree_root = build_tree_level_order(values)
-
-# Call depth function
+#
+# # Test input: LeetCode format
+# values = [3, 9, 20, None, None, 15, 7]
+#
+# # Build tree from input
+# tree_root = build_tree_level_order(values)
+#
+# # Call depth function
 # depth = maxDepth(tree_root)
 # print("Maximum Depth =", depth)  # Expected Output: 3
+#
+# # Call Count function
+# countAll = countNodes(tree_root)
+# print("Total Nodes =", countAll)  # Expected Output: 3
+# #
+# # # Call sum function
+# sumAll = sumNodes(tree_root)
+# print("Sum of Nodes =", sumAll)  # Expected Output: 3
 
-# Call Count function
-countAll = countNodes(tree_root)
-print("Total Nodes =", countAll)  # Expected Output: 3
+# Leaf similarity check function
+list1 = [3,5,1,6,2,9,8,None,None,7,4]
+list2 = [3,5,1,6,7,4,2,None,None,None,None,None,None,9,8]
 
-# Call sum function
-sumAll = sumNodes(tree_root)
-print("Sum of Nodes =", sumAll)  # Expected Output: 3
+root1 = build_tree_level_order(list1)
+root2 = build_tree_level_order(list2)
+similarLeaf = leafSimilar(root1, root2)
+print("Leaves are Same =", similarLeaf)  # Expected Output: 3
