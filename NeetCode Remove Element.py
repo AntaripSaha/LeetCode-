@@ -7,4 +7,5 @@ for num in range(len(nums)):
         nums[k] = nums[num]
         k += 1
 
+print(nums)
 print(k)
